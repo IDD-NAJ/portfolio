@@ -7,12 +7,12 @@
 
 :root {
     /* Primary Colors - Professional Navy Blue */
-    --primary-color: #1a4789;
+    --primary-color: #4a90e2;
     --primary-light: #2d5ca8;
     --primary-dark: #0d2b54;
     
     /* Secondary Colors - Refined Gray */
-    --secondary-color: #445464;
+    --secondary-color: #2c3e50;
     --secondary-light: #6b7c8c;
     --secondary-dark: #2c3845;
     
@@ -20,31 +20,35 @@
     --accent-1: #34785c;  /* Professional Green */
     --accent-2: #b86e3c;  /* Warm Corporate Orange */
     --accent-3: #8c4b64;  /* Muted Corporate Purple */
+    --accent-color: #e74c3c;
     
     /* Neutral Colors - Clean and Professional */
-    --text-color: #2c3845;
+    --text-color: #333;
     --text-light: #5a6a7a;
-    --background: #f8f9fb;
+    --background: #ffffff;
     --white: #ffffff;
     --gray-100: #f0f2f5;
     --gray-200: #e2e5ea;
     --gray-300: #d1d5dc;
     
     /* Shadows - Subtle and Professional */
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-    --shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
     --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --border-radius: 8px;
+    --max-width: 1200px;
 }
 
 [data-theme="dark"] {
-    --primary-color: #2d5ca8;
+    --primary-color: #64b5f6;
     --primary-dark: #1a4789;
-    --text-color: #e2e5ea;
+    --text-color: #f5f5f5;
     --text-light: #d1d5dc;
-    --background: #1a1f2b;
-    --card-bg: #242a38;
+    --background: #121212;
+    --card-bg: #1e1e1e;
     --border-color: #2c3845;
-    --shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
     
     /* Dark mode specific text colors */
     --heading-color: #f0f2f5;
@@ -387,25 +391,36 @@ nav {
 }
 
 .cta-button {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background: linear-gradient(to right, var(--primary-color), var(--primary-dark));
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    color: white;
     font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
-.cta-button.secondary {
-    background: transparent;
-    border: 2px solid var(--white);
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition);
+}
+
+.cta-button:hover::before {
+    left: 100%;
 }
 
 .cta-button:hover {
-    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
-    transform: translateY(-3px);
-    box-shadow: var(--shadow);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 .scroll-indicator {
@@ -2094,5 +2109,201 @@ footer {
     
     .contact-card:hover {
         transform: translateY(-3px);
+    }
+}
+
+/* Modern scrollbar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--card-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--primary-color);
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-color);
+}
+
+/* Improved animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Modern button styles */
+.cta-button {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    border: none;
+    padding: 12px 24px;
+    border-radius: var(--border-radius);
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: var(--transition);
+}
+
+.cta-button:hover::before {
+    left: 100%;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+/* Modern card styles */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.card:hover::before {
+    opacity: 1;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* Modern form styles */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: var(--border-radius);
+    background: var(--card-bg);
+    color: var(--text-color);
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.2);
+}
+
+.form-group label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: var(--text-color);
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label,
+.form-group textarea:focus + label,
+.form-group textarea:not(:placeholder-shown) + label {
+    top: -20px;
+    left: 0;
+    font-size: 0.8em;
+    color: var(--primary-color);
+}
+
+/* Modern responsive design */
+@media (max-width: 768px) {
+    :root {
+        --border-radius: 6px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    .cta-button {
+        padding: 10px 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+    }
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Focus styles for keyboard navigation */
+:focus-visible {
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: black;
+    }
+
+    .card {
+        break-inside: avoid;
+        page-break-inside: avoid;
     }
 } 
